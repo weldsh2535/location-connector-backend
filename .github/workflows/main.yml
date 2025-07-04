@@ -17,12 +17,13 @@ jobs:
       - name: Directory Permissions
         run: chmod -R 777 storage bootstrap/cache
 
-      - name: 📂 Sync files
+      - name: FTP Deploy
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          port: 21
-          server-dir: /
+          local-dir: ./dist/
+          server-dir: /public_html/
+          ftp-passive: true
 
